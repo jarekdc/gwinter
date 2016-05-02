@@ -88,6 +88,7 @@ public class PlayerMovement : MonoBehaviour {
                 a += 16;
             }
 
+            // How much is the speed reduced: walking forwards, strafing, backwards
             if ((a >= 0 && a <= 2) || (a >= 13 && a <= 15))
             {
                 speed = 2.4f;
