@@ -8,12 +8,13 @@ public class PlayerMovement : MonoBehaviour {
     public Transform torso;
     float mouseSphere;
     int moveDirection;
-    public bool shooting;
     float a;
+    PlayerAttack playerAttack;
+    public bool shooting;
 
     // Use this for initialization
     void Start () {
-        
+        playerAttack = gameObject.GetComponent<PlayerAttack>();
     }
 	
 	// Update is called once per frame
@@ -35,7 +36,12 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         // Speed reducing while shooting depending on the directions the character is facing and moving
-        shooting = Input.GetMouseButton(1);
+        shooting = playerAttack.shooting;
+        if (!shooting)
+        {
+            speed = 3f;
+        }
+
         if (moving && shooting)
         {
             Vector3 torsoRotation = torso.gameObject.transform.eulerAngles;
