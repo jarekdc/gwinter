@@ -5,6 +5,7 @@ public class PlayerAttack : MonoBehaviour {
 
     public bool shooting = false;
     Animator anim;
+    
 
 	// Use this for initialization
 	void Start () {

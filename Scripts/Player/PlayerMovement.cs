@@ -1,24 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
     public float speed = 3f;
     public bool moving;
     public Transform torso;
     float mouseSphere;
     int moveDirection;
+    float inputX = 0f;
+    float inputY = 0f;
     float a;
     PlayerAttack playerAttack;
     public bool shooting;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         playerAttack = gameObject.GetComponent<PlayerAttack>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
+        MovePlayer();
+        ControlShooting();
+    }
+
+    void MovePlayer()
+    {
         // Basic movement
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
@@ -34,7 +45,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             moving = true;
         }
+    }
 
+    void ControlShooting()
+    {
         // Speed reducing while shooting depending on the directions the character is facing and moving
         shooting = playerAttack.shooting;
         if (!shooting)
