@@ -8,7 +8,6 @@ public class PlayerAttack : MonoBehaviour {
     public List<GameObject> rangedWeapons = new List<GameObject>();
     public GameObject currentMeleeWeapon;
     public GameObject currentRangedWeapon;
-    public weaponAttack weaponAttack;
 
     public bool shooting = false;
     public bool attack = false;
@@ -26,10 +25,16 @@ public class PlayerAttack : MonoBehaviour {
         shooting = Input.GetMouseButton(1);
         anim.SetBool("shooting", shooting);
 
-        if(shooting && attack)
+        if(attack)
         {
-            weaponAttack = currentRangedWeapon.GetComponent<weaponAttack>();
-            weaponAttack.Attack();
+            if (shooting)
+            {
+                currentRangedWeapon.SendMessage("Attack");
+            }
+            else
+            {
+                currentMeleeWeapon.SendMessage("Attack");
+            }           
         }
     }
 }
