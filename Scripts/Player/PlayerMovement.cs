@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public bool moving;
     public Transform torso;
     float mouseSphere;
-    int moveDirection;
+    public int moveDirection;
     float inputX = 0f;
     float inputY = 0f;
     float a;
@@ -31,9 +31,45 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
-        // Basic movement
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
+
+        if (inputX > 0 && inputY == 0)
+        {
+            moveDirection = 1;
+        }
+        else if (inputX > 0 && inputY > 0)
+        {
+            moveDirection = 2;
+        }
+        else if (inputX > 0 && inputY < 0)
+        {
+            moveDirection = 8;
+        }
+        else if (inputX == 0 && inputY > 0)
+        {
+            moveDirection = 3;
+        }
+        else if (inputX == 0 && inputY < 0)
+        {
+            moveDirection = 7;
+        }
+        else if (inputX < 0 && inputY == 0)
+        {
+            moveDirection = 5;
+        }
+        else if (inputX < 0 && inputY > 0)
+        {
+            moveDirection = 4;
+        }
+        else if (inputX < 0 && inputY < 0)
+        {
+            moveDirection = 6;
+        }
+        else
+        {
+            moveDirection = 0;
+        }
 
         Vector3 movement = new Vector3(speed * inputX, speed * inputY, 0) * Time.deltaTime;
         transform.Translate(movement);
@@ -62,43 +98,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 torsoRotation = torso.gameObject.transform.eulerAngles;
             mouseSphere = Mathf.Floor(torsoRotation.z / 22.5f);
 
-            if (inputX > 0 && inputY == 0)
-            {
-                moveDirection = 1;
-            }
-            else if (inputX > 0 && inputY > 0)
-            {
-                moveDirection = 2;
-            }
-            else if (inputX > 0 && inputY < 0)
-            {
-                moveDirection = 8;
-            }
-            else if (inputX == 0 && inputY > 0)
-            {
-                moveDirection = 3;
-            }
-            else if (inputX == 0 && inputY < 0)
-            {
-                moveDirection = 7;
-            }
-            else if (inputX < 0 && inputY == 0)
-            {
-                moveDirection = 5;
-            }
-            else if (inputX < 0 && inputY > 0)
-            {
-                moveDirection = 4;
-            }
-            else if (inputX < 0 && inputY < 0)
-            {
-                moveDirection = 6;
-            }
-            else
-            {
-                moveDirection = 0;
-            }
-
             a = mouseSphere - (moveDirection * 2 - 2);
             if (a > 15)
             {
@@ -116,11 +115,11 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (a >= 6 && a <= 9)
             {
-                speed = (float)0.6 * maxSpeed;
+                speed = (float)0.4 * maxSpeed;
             }
             else
             {
-                speed = (float)0.4 * maxSpeed;
+                speed = (float)0.6 * maxSpeed;
             }
         }
     }
