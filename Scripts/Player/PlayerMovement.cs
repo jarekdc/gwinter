@@ -4,7 +4,8 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float speed = 3f;
+    public float speed;
+    public float maxSpeed = 3f;
     public bool moving;
     public Transform torso;
     float mouseSphere;
@@ -53,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         shooting = playerAttack.shooting;
         if (!shooting)
         {
-            speed = 3f;
+            speed = maxSpeed;
         }
 
         if (moving && shooting)
@@ -111,15 +112,15 @@ public class PlayerMovement : MonoBehaviour
             // How much is the speed reduced: walking forwards, strafing, backwards
             if ((a >= 0 && a <= 2) || (a >= 13 && a <= 15))
             {
-                speed = 2.4f;
+                speed = (float)0.8 * maxSpeed;
             }
             else if (a >= 6 && a <= 9)
             {
-                speed = 1f;
+                speed = (float)0.6 * maxSpeed;
             }
             else
             {
-                speed = 1.8f;
+                speed = (float)0.4 * maxSpeed;
             }
         }
     }
