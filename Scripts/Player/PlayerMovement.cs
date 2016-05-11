@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform torso;
     float mouseSphere;
     public int moveDirection;
-    float inputX = 0f;
-    float inputY = 0f;
+    private float inputX;
+    private float inputY;
     float a;
     PlayerAttack playerAttack;
     public bool shooting;
