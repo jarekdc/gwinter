@@ -21,7 +21,7 @@ public class Shotgun : MonoBehaviour {
                 float spread = Random.Range(-spreadRange, spreadRange);
                 bullet.transform.Rotate(0f, 0f, spread);
                 bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * speed;
-                Destroy(bullet, 1);
+                Destroy(bullet, 1f);
             }            
         }
     }

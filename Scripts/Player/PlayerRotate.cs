@@ -8,13 +8,15 @@ public class PlayerRotate : MonoBehaviour {
     Rigidbody2D rid;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         rid = this.GetComponent<Rigidbody2D>();
         cam = Camera.main;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         rotateToCamera();
 	}
 

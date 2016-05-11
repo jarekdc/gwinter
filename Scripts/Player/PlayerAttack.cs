@@ -15,12 +15,14 @@ public class PlayerAttack : MonoBehaviour {
     
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         anim = GetComponentInChildren<Animator>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         attack = Input.GetMouseButton(0);
         shooting = Input.GetMouseButton(1);
         anim.SetBool("shooting", shooting);

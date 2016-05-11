@@ -3,11 +3,14 @@ using System.Collections;
 
 public class BulletHit : MonoBehaviour {
 
-    void OnCollisionEnter2D(Collision2D coll)
+    public int bulletDamage = 10;
+
+    void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Enemy")
         {
-            Debug.Log(coll.gameObject.tag);
+            coll.gameObject.GetComponent<Health>().Damage(bulletDamage);
+            Destroy (gameObject);        
         }        
     }
 }
