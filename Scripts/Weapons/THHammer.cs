@@ -29,6 +29,7 @@ public class THHammer : MonoBehaviour {
         if (coll.gameObject.tag == "Enemy")
         {
             coll.gameObject.GetComponent<Health>().Damage(damage);
+            Debug.Log("Im hit");
         }
     }
 }

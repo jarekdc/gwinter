@@ -10,7 +10,6 @@ public class CameraControl : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-		player = GameObject.FindGameObjectWithTag("Player");
 		Camera.main.orthographicSize = 4f;
 	}
 	
