@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletHit : MonoBehaviour {
+public class ShotgunBulletHit : MonoBehaviour {
 
     public int bulletDamage = 10;
     public ParticleSystem bloodShotgun;
