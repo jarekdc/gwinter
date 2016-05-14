@@ -9,12 +9,19 @@ public class Shotgun : MonoBehaviour {
     public float speed = 10f;
     public float spreadRange = 10f;
     public int bulletsQuantity = 20;
+    public Animator anim;
+
+    void Start()
+    {
+        anim = GetComponentInParent<Animator>();
+    }
 
     void Attack()
     {
         if(Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
+            anim.SetTrigger("rangedAttack");
             for (int i = 0; i < bulletsQuantity; i++)
             {
                 GameObject bullet = (GameObject)Instantiate(ShotgunBullet, transform.position, transform.rotation);                
