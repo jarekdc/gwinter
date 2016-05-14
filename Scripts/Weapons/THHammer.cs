@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class THHammer : MonoBehaviour {
 
@@ -7,6 +8,7 @@ public class THHammer : MonoBehaviour {
     private float nextFire = 0.0f;
     public int damage = 100;
     public Collider2D hitRange;
+    public List<GameObject> targetsHit;
     Animator anim;
 
     void Start()
@@ -20,6 +22,7 @@ public class THHammer : MonoBehaviour {
         if (Time.time > nextFire && !anim.GetCurrentAnimatorStateInfo(0).IsName("THHammerAttack"))
         {
             nextFire = Time.time + fireRate;
+            targetsHit.Clear();
             anim.SetTrigger("meleeAttack");
         }
     }
@@ -28,8 +31,13 @@ public class THHammer : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Enemy")
         {
-            coll.gameObject.GetComponent<Health>().Damage(damage);
-            Debug.Log("Im hit");
+            GameObject go = coll.gameObject;
+            if(!targetsHit.Contains(go))
+            {
+                targetsHit.Add(go);
+                go.GetComponent<Health>().Damage(damage);
+                Debug.Log("Im hit");
+            }            
         }
     }
 }
