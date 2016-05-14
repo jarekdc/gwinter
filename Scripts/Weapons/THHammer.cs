@@ -10,6 +10,7 @@ public class THHammer : MonoBehaviour {
     public Collider2D hitRange;
     public List<GameObject> targetsHit;
     Animator anim;
+    public ParticleSystem meleeBlood;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class THHammer : MonoBehaviour {
             {
                 targetsHit.Add(go);
                 go.GetComponent<Health>().Damage(damage);
+                Instantiate(meleeBlood, go.transform.position, Quaternion.identity);
                 Debug.Log("Im hit");
             }            
         }
