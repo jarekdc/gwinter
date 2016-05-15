@@ -8,9 +8,9 @@ public class PlayerMovement : MonoBehaviour{
     public bool moving;
     public Transform torso;
     float mouseSphere;
-    public int moveDirection;
-    private float inputX;
-    private float inputY;
+    int moveDirection;
+    float inputX;
+    float inputY;
     float a;
     PlayerAttack playerAttack;
     public bool shooting;
@@ -70,8 +70,12 @@ public class PlayerMovement : MonoBehaviour{
             moveDirection = 0;
         }
 
-        Vector3 movement = new Vector3(speed * inputX, speed * inputY, 0) * Time.deltaTime;
-        transform.Translate(movement);
+        Vector3 input = new Vector3(inputX, inputY);
+        Vector3 direction = input.normalized;
+        Vector3 velocity = direction * speed;
+        Vector3 moveAmount = velocity * Time.deltaTime;
+
+        transform.Translate(moveAmount);
 
         if (inputX == 0 && inputY == 0)
         {
